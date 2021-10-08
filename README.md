@@ -1,1 +1,1 @@
-# autonomous_flappy_bird
+# ai_flappy_bird
