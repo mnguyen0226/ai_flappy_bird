@@ -1,6 +1,6 @@
 # AI Flappy Hokie
 
-![alt text](https://github.com/mnguyen0226/ai_flappy_bird/blob/main/docs/pics/neat_algorithm_1.PNG)
+![alt text](https://github.com/mnguyen0226/ai_flappy_bird/blob/main/docs/pics/git_forthground_black.jpg)
 
 ## How To
 
