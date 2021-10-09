@@ -5,20 +5,20 @@ import os
 import random
 pygame.font.init()
 
-
+GENS = 0
 WIN_WIDTH = 500
 WIN_HEIGHT = 800
 PIPE_DIST = 600
 
 # Load in images
 BIRD_IMGS = [
-    pygame.transform.scale2x(pygame.image.load(os.path.join("imgs", "bird1.png"))),
-    pygame.transform.scale2x(pygame.image.load(os.path.join("imgs", "bird2.png"))),
-    pygame.transform.scale2x(pygame.image.load(os.path.join("imgs", "bird3.png"))),
+    pygame.transform.scale2x(pygame.image.load(os.path.join("docs/imgs", "bird1.png"))),
+    pygame.transform.scale2x(pygame.image.load(os.path.join("docs/imgs", "bird2.png"))),
+    pygame.transform.scale2x(pygame.image.load(os.path.join("docs/imgs", "bird3.png"))),
 ]
-PIPE_IMG = pygame.transform.scale2x(pygame.image.load(os.path.join("imgs", "pipe.png")))
-BASE_IMG = pygame.transform.scale2x(pygame.image.load(os.path.join("imgs", "base.png")))
-BG_IMG = pygame.transform.scale2x(pygame.image.load(os.path.join("imgs", "bg.png")))
+PIPE_IMG = pygame.transform.scale2x(pygame.image.load(os.path.join("docs/imgs", "pipe.png")))
+BASE_IMG = pygame.transform.scale2x(pygame.image.load(os.path.join("docs/imgs", "base.png")))
+BG_IMG = pygame.transform.scale2x(pygame.image.load(os.path.join("docs/imgs", "bg.png")))
 STAT_FONT = pygame.font.SysFont("comicsans", 50)
 
 #########################################################################
@@ -166,7 +166,7 @@ class Base:
         win.blit(self.IMG, (self.x2, self.y))
 
 #########################################################################
-def draw_window(win, birds, pipes, base, score):
+def draw_window(win, birds, pipes, base, score, gen):
     win.blit(BG_IMG, (0, 0))  # topleft position
     
     for pipe in pipes:
@@ -174,6 +174,9 @@ def draw_window(win, birds, pipes, base, score):
 
     text = STAT_FONT.render("Scores: " + str(score), 1, (255,255,255))
     win.blit(text, (WIN_WIDTH - 10 - text.get_width(), 10))
+
+    text = STAT_FONT.render("Gens: " + str(gen), 1, (255,255,255))
+    win.blit(text, (10, 10))
 
     base.draw(win)
     for bird in birds:
@@ -183,6 +186,8 @@ def draw_window(win, birds, pipes, base, score):
 #########################################################################
 
 def main(genomes, config):
+    global GENS
+    GENS += 1
     nets = [] # keep track of each neural net for each bird
     ge = [] # keep track of the genomes
     birds = []
@@ -264,8 +269,11 @@ def main(genomes, config):
                 nets.pop(x)
                 ge.pop(x)
 
+        if score > 50: 
+            break
+
         base.move()
-        draw_window(win, birds, pipes, base, score)
+        draw_window(win, birds, pipes, base, score, GENS)
 
 # Set up NEAT
 def run(config_path):
