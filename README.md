@@ -7,4 +7,10 @@
 ## Flappy Bird Environment
 
 ## Algorithms
+- NeuroEvolution of Augmenting Topologies (NEAT)
+- Reinforcement Learning:
+    - DQN
+    - A2C
+    - A3C
+    - PPO
 ## Best Play
