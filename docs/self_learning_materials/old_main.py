@@ -30,12 +30,12 @@ def main():
 
         if add_pipe:
             score += 1
-            pipes.append(Pipe(PIPE_DIST)) 
-        
-        for r in rem: # Get rid of the pipe in the remove array
+            pipes.append(Pipe(PIPE_DIST))
+
+        for r in rem:  # Get rid of the pipe in the remove array
             pipes.remove(r)
 
-        if bird.y + bird.img.get_height() >= 730: # we hit the floor
+        if bird.y + bird.img.get_height() >= 730:  # we hit the floor
             pass
 
         base.move()
